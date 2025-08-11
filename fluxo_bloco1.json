@@ -1,0 +1,68 @@
+{
+  "name": "Miguel - n8n Bloco1 (b\u00e1sico)",
+  "nodes": [
+    {
+      "id": "Webhook",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "position": [
+        260,
+        220
+      ]
+    },
+    {
+      "id": "Router",
+      "name": "Router Inten\u00e7\u00f5es",
+      "type": "n8n-nodes-base.switch",
+      "position": [
+        520,
+        220
+      ],
+      "parameters": {
+        "propertyName": "={{$json.text}}",
+        "rules": [
+          {
+            "operation": "regex",
+            "value": "^(gastei|usei|paguei|pixei)"
+          }
+        ]
+      }
+    },
+    {
+      "id": "OK",
+      "name": "Confirma\u00e7\u00e3o",
+      "type": "n8n-nodes-base.function",
+      "position": [
+        760,
+        220
+      ],
+      "parameters": {
+        "functionCode": "return [{json:{ok:true,msg:'Lan\u00e7amento recebido!'}}];"
+      }
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Router",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Router": {
+      "main": [
+        [
+          {
+            "node": "OK",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  }
+}
