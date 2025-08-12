@@ -1,0 +1,30 @@
+services:
+  - type: web
+    name: n8n-bloco1
+    env: node
+    plan: free
+    branch: main
+    buildCommand: "npm install"
+    startCommand: "npx n8n start --port $PORT"
+    healthCheckPath: "/healthz"
+    envVars:
+      - key: N8N_ENCRYPTION_KEY
+        value: "defina_uma_chave_longa_aleatoria"
+      - key: N8N_BASIC_AUTH_ACTIVE
+        value: "true"
+      - key: N8N_BASIC_AUTH_USER
+        value: "admin"
+      - key: N8N_BASIC_AUTH_PASSWORD
+        value: "troque_esta_senha"
+      - key: GENERIC_TIMEZONE
+        value: "America/Sao_Paulo"
+      - key: EXECUTIONS_PROCESS
+        value: "main"
+      - key: RENDER1_URL
+        value: "https://miguel-render-1.onrender.com"
+      - key: BUNKER_TOKEN
+        sync: false
+    disk:
+      name: n8n-data
+      mountPath: /home/node/.n8n
+      sizeGB: 1
