@@ -3,15 +3,21 @@ services:
     name: n8n-1
     env: node
     plan: free
-    buildCommand: "npm install"
-    startCommand: "n8n start"
+    buildCommand: npm install
+    startCommand: npm start
     envVars:
       - key: N8N_BASIC_AUTH_ACTIVE
         value: "true"
       - key: N8N_BASIC_AUTH_USER
-        value: "seuusuario"
+        value: "admin"
       - key: N8N_BASIC_AUTH_PASSWORD
-        value: "suasenha"
+        value: "SUA_SENHA_AQUI"
+      - key: N8N_HOST
+        value: "seu-dominio-do-render.onrender.com"
+      - key: N8N_PORT
+        value: "10000"
+      - key: N8N_PROTOCOL
+        value: "https"
       - key: DB_TYPE
         value: "postgresdb"
       - key: DB_POSTGRESDB_HOST
@@ -23,10 +29,6 @@ services:
       - key: DB_POSTGRESDB_USER
         value: "neondb_owner"
       - key: DB_POSTGRESDB_PASSWORD
-        value: "npg_Thd7qMaDu2lk"
-      - key: DB_POSTGRESDB_SSL_CA
-        value: "-----BEGIN CERTIFICATE-----\n...certificado...\n-----END CERTIFICATE-----"
-      - key: N8N_HOST
-        value: "0.0.0.0"
-      - key: N8N_PORT
-        value: "3000"
+        value: "SUA_SENHA_DO_NEON"
+      - key: DB_POSTGRESDB_SSL_REJECT_UNAUTHORIZED
+        value: "false"
