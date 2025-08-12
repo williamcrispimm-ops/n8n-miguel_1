@@ -1,37 +1,17 @@
 services:
   - type: web
-    name: n8n-bloco1
+    name: n8n-1
     env: node
     plan: free
-    buildCommand: "npm install n8n"
-    startCommand: "npx n8n start --port $PORT"
-    healthCheckPath: "/healthz"
+    buildCommand: "npm install"
+    startCommand: "n8n start"
     envVars:
-      # n8n básico
-      - key: N8N_ENCRYPTION_KEY
-        value: "troque_por_uma_chave_longa_e_aleatoria"   # usado para criptografar credenciais no DB
       - key: N8N_BASIC_AUTH_ACTIVE
         value: "true"
       - key: N8N_BASIC_AUTH_USER
-        value: "admin"
+        value: "seuusuario"
       - key: N8N_BASIC_AUTH_PASSWORD
-        value: "defina_uma_senha_forte"
-      - key: GENERIC_TIMEZONE
-        value: "America/Sao_Paulo"
-      - key: EXECUTIONS_PROCESS
-        value: "main"
-      - key: N8N_HOST
-        value: "0.0.0.0"
-      - key: N8N_PORT
-        value: "5678"
-      - key: N8N_PROTOCOL
-        value: "http"
-
-      # Render 1 (para os nós HTTP do bloco 1)
-      - key: RENDER1_URL
-        value: "https://miguel-render-1.onrender.com"
-
-      # Banco Postgres (Neon)
+        value: "suasenha"
       - key: DB_TYPE
         value: "postgresdb"
       - key: DB_POSTGRESDB_HOST
@@ -43,11 +23,10 @@ services:
       - key: DB_POSTGRESDB_USER
         value: "neondb_owner"
       - key: DB_POSTGRESDB_PASSWORD
-        sync: false
-      - key: DB_POSTGRESDB_SCHEMA
-        value: "public"
-      # SSL no Neon
-      - key: DB_POSTGRESDB_SSL
-        value: "true"
-      - key: DB_POSTGRESDB_SSL_REJECT_UNAUTHORIZED
-        value: "false"
+        value: "npg_Thd7qMaDu2lk"
+      - key: DB_POSTGRESDB_SSL_CA
+        value: "-----BEGIN CERTIFICATE-----\n...certificado...\n-----END CERTIFICATE-----"
+      - key: N8N_HOST
+        value: "0.0.0.0"
+      - key: N8N_PORT
+        value: "3000"
