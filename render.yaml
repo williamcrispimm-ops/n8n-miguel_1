@@ -1,48 +1,55 @@
 services:
   - type: web
-    name: n8n-service
+    name: n8n-miguel-1
     env: node
     plan: free
     buildCommand: "npm install"
-    startCommand: "npx n8n start --port $PORT"
-    # opcional: o n8n não tem /healthz por padrão; usar a raiz
-    healthCheckPath: "/"
+    startCommand: "n8n start"
     envVars:
-      # Login da UI do n8n
+      # Segurança e autenticação
       - key: N8N_BASIC_AUTH_ACTIVE
         value: "true"
       - key: N8N_BASIC_AUTH_USER
         value: "seu_usuario"
       - key: N8N_BASIC_AUTH_PASSWORD
         value: "sua_senha"
+      - key: N8N_ENCRYPTION_KEY
+        value: "fehZJSoRoudIQeScPINnCk8piLEktphv"
 
-      # Host/Protocolo (ok manter assim)
+      # Host e porta
       - key: N8N_HOST
         value: "0.0.0.0"
-      - key: N8N_PROTOCOL
-        value: "http"
-      # NÃO defina N8N_PORT aqui; o --port $PORT do startCommand já cuida
-
-      # URL pública (ajuste após deploy, opcional)
+      - key: N8N_PORT
+        value: "10000"
       - key: WEBHOOK_TUNNEL_URL
-        value: "https://seu-dominio-do-render.onrender.com/"
+        value: "https://n8n-miguel-1.onrender.com/"
 
-      # Banco (Neon)
+      # Banco Neon
       - key: DB_TYPE
         value: "postgresdb"
       - key: DB_POSTGRESDB_HOST
-        value: "seu_host_neon"
+        value: "ep-plain-fire-acfan4ne-pooler.sa-east-1.aws.neon.tech"
       - key: DB_POSTGRESDB_PORT
         value: "5432"
       - key: DB_POSTGRESDB_DATABASE
-        value: "seu_banco_neon"
+        value: "neondb"
       - key: DB_POSTGRESDB_USER
-        value: "seu_usuario_neon"
+        value: "neondb_owner"
       - key: DB_POSTGRESDB_PASSWORD
-        value: "sua_senha_neon"
-
-      # SSL sem certificado (modo simples)
-      - key: DB_POSTGRESDB_SSL
-        value: "true"
+        value: "npg_Thd7qMaDu2lk"
       - key: DB_POSTGRESDB_SSL_REJECT_UNAUTHORIZED
         value: "false"
+
+      # Telegram
+      - key: TELEGRAM_BOT_TOKEN
+        value: "8211404971:AAEkpROe1nKMwN5iSqO3_pJqhlqkW3a8AsU"
+      - key: TELEGRAM_ADMIN_CHAT_ID
+        value: "8273258735"
+
+      # Serviço de keepalive
+      - key: RENDER1_URL
+        value: "https://miguel-render-1.onrender.com"
+      - key: SVC3_URL
+        value: "https://miguel-n8n-keepalive-orchestrator.onrender.com"
+      - key: SVC3_SRC
+        value: "n8n1"
