@@ -1,12 +1,11 @@
 {
-  "name": "n8n-render",
+  "name": "n8n-instance-1",
   "version": "1.0.0",
-  "description": "N8N no Render",
-  "main": "index.js",
+  "description": "N8n bloco 1 para integração com Miguel",
   "scripts": {
-    "start": "n8n start"
+    "start": "n8n"
   },
   "dependencies": {
-    "n8n": "^1.67.0"
+    "n8n": "^1.79.3"
   }
 }
