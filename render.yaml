@@ -6,25 +6,20 @@ services:
     buildCommand: "npm install"
     startCommand: "n8n start"
     envVars:
-      # Segurança e autenticação
       - key: N8N_BASIC_AUTH_ACTIVE
         value: "true"
       - key: N8N_BASIC_AUTH_USER
-        value: "seu_usuario"
+        value: "william.crispimm@gmail.com"
       - key: N8N_BASIC_AUTH_PASSWORD
-        value: "sua_senha"
-      - key: N8N_ENCRYPTION_KEY
-        value: "fehZJSoRoudIQeScPINnCk8piLEktphv"
-
-      # Host e porta
+        value: "@Miguelbott1"
       - key: N8N_HOST
         value: "0.0.0.0"
       - key: N8N_PORT
         value: "10000"
+      - key: N8N_ENCRYPTION_KEY
+        value: "fehZJSoRoudIQeScPINnCk8piLEktphv" 
       - key: WEBHOOK_TUNNEL_URL
-        value: "https://n8n-miguel-1.onrender.com/"
-
-      # Banco Neon
+        value: "https://miguel-n8n-1.onrender.com/"
       - key: DB_TYPE
         value: "postgresdb"
       - key: DB_POSTGRESDB_HOST
@@ -37,16 +32,16 @@ services:
         value: "neondb_owner"
       - key: DB_POSTGRESDB_PASSWORD
         value: "npg_Thd7qMaDu2lk"
+      - key: DB_POSTGRESDB_SCHEMA
+        value: "public"
       - key: DB_POSTGRESDB_SSL_REJECT_UNAUTHORIZED
         value: "false"
-
-      # Telegram
+      - key: DB_POSTGRESDB_SSL
+        value: "true"
       - key: TELEGRAM_BOT_TOKEN
         value: "8211404971:AAEkpROe1nKMwN5iSqO3_pJqhlqkW3a8AsU"
       - key: TELEGRAM_ADMIN_CHAT_ID
         value: "8273258735"
-
-      # Serviço de keepalive
       - key: RENDER1_URL
         value: "https://miguel-render-1.onrender.com"
       - key: SVC3_URL
