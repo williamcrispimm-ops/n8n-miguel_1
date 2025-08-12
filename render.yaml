@@ -4,20 +4,30 @@ services:
     env: node
     plan: free
     buildCommand: "npm install"
-    startCommand: "n8n start"
+    startCommand: "npx n8n start --port $PORT"
+    # opcional: o n8n não tem /healthz por padrão; usar a raiz
+    healthCheckPath: "/"
     envVars:
+      # Login da UI do n8n
       - key: N8N_BASIC_AUTH_ACTIVE
         value: "true"
       - key: N8N_BASIC_AUTH_USER
         value: "seu_usuario"
       - key: N8N_BASIC_AUTH_PASSWORD
         value: "sua_senha"
+
+      # Host/Protocolo (ok manter assim)
       - key: N8N_HOST
         value: "0.0.0.0"
-      - key: N8N_PORT
-        value: "10000"
+      - key: N8N_PROTOCOL
+        value: "http"
+      # NÃO defina N8N_PORT aqui; o --port $PORT do startCommand já cuida
+
+      # URL pública (ajuste após deploy, opcional)
       - key: WEBHOOK_TUNNEL_URL
         value: "https://seu-dominio-do-render.onrender.com/"
+
+      # Banco (Neon)
       - key: DB_TYPE
         value: "postgresdb"
       - key: DB_POSTGRESDB_HOST
@@ -30,10 +40,9 @@ services:
         value: "seu_usuario_neon"
       - key: DB_POSTGRESDB_PASSWORD
         value: "sua_senha_neon"
+
+      # SSL sem certificado (modo simples)
+      - key: DB_POSTGRESDB_SSL
+        value: "true"
       - key: DB_POSTGRESDB_SSL_REJECT_UNAUTHORIZED
         value: "false"
-      - key: DB_POSTGRESDB_SSL_CA
-        value: |
-          -----BEGIN CERTIFICATE-----
-          COLE_SEU_CERTIFICADO_AQUI
-          -----END CERTIFICATE-----
