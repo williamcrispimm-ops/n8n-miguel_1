@@ -1,11 +1,14 @@
 {
-  "name": "n8n-instance-1",
+  "name": "n8n-service",
   "version": "1.0.0",
-  "description": "N8n bloco 1 para integração com Miguel",
+  "private": true,
+  "engines": {
+    "node": "20.x"
+  },
   "scripts": {
     "start": "n8n"
   },
   "dependencies": {
-    "n8n": "^1.79.3"
+    "n8n": "^1.68.0"
   }
 }
