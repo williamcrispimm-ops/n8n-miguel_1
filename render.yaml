@@ -4,7 +4,7 @@ services:
     env: node
     plan: free
     buildCommand: "npm install"
-    startCommand: "npm start"
+    startCommand: "n8n start"
     envVars:
       - key: N8N_BASIC_AUTH_ACTIVE
         value: "true"
@@ -32,3 +32,8 @@ services:
         value: "sua_senha_neon"
       - key: DB_POSTGRESDB_SSL_REJECT_UNAUTHORIZED
         value: "false"
+      - key: DB_POSTGRESDB_SSL_CA
+        value: |
+          -----BEGIN CERTIFICATE-----
+          COLE_SEU_CERTIFICADO_AQUI
+          -----END CERTIFICATE-----
